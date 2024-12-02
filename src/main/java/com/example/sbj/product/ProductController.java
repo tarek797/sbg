@@ -1,29 +1,50 @@
 package com.example.sbj.product;
 
-import org.springframework.http.HttpStatus;
+import com.example.sbj.product.services.CreateProductService;
+import com.example.sbj.product.services.DeleteProductService;
+import com.example.sbj.product.services.GetProductsService;
+import com.example.sbj.product.services.UpdateProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
 
+    final GetProductsService getProductsService;
+    final CreateProductService createProductService;
+    final UpdateProductService updateProductService;
+    final DeleteProductService deleteProductService;
+
+    public ProductController(GetProductsService getProductsService,
+                             CreateProductService createProductService,
+                             UpdateProductService updateProductService,
+                             DeleteProductService deleteProductService) {
+
+        this.getProductsService = getProductsService;
+        this.createProductService = createProductService;
+        this.updateProductService = updateProductService;
+        this.deleteProductService = deleteProductService;
+    }
+
+
     @PostMapping
     public ResponseEntity<String> createProduct() {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Product created");
+        return createProductService.execute(null
+        );
     }
 
     @GetMapping
     public ResponseEntity<String> getProducts() {
-        return ResponseEntity.status(HttpStatus.OK).body("Product list");
+        return getProductsService.execute(null);
     }
 
     @PutMapping
     public ResponseEntity<String> updateProduct() {
-        return ResponseEntity.status(HttpStatus.OK).body("Product updated");
+        return updateProductService.execute(null);
     }
 
     @DeleteMapping
     public ResponseEntity<String> deleteProduct() {
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Product deleted");
+        return deleteProductService.execute(null);
     }
 }

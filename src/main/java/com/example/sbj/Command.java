@@ -1,4 +1,4 @@
-package com.example.sbj.product;
+package com.example.sbj;
 
 import org.springframework.http.ResponseEntity;
 

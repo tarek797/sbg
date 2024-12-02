@@ -1,11 +1,14 @@
 package com.example.sbj.product;
 
+import com.example.sbj.product.model.Product;
 import com.example.sbj.product.services.CreateProductService;
 import com.example.sbj.product.services.DeleteProductService;
 import com.example.sbj.product.services.GetProductsService;
 import com.example.sbj.product.services.UpdateProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -34,7 +37,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<String> getProducts() {
+    public ResponseEntity<List<Product>> getProducts() {
         return getProductsService.execute(null);
     }
 

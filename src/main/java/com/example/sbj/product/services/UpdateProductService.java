@@ -1,6 +1,6 @@
 package com.example.sbj.product.services;
 
-import com.example.sbj.product.Command;
+import com.example.sbj.Command;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

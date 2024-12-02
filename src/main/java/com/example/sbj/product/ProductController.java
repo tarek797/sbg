@@ -1,6 +1,7 @@
 package com.example.sbj.product;
 
 import com.example.sbj.product.model.Product;
+import com.example.sbj.product.model.ProductDTO;
 import com.example.sbj.product.services.CreateProductService;
 import com.example.sbj.product.services.DeleteProductService;
 import com.example.sbj.product.services.GetProductsService;
@@ -31,13 +32,12 @@ public class ProductController {
 
 
     @PostMapping
-    public ResponseEntity<String> createProduct() {
-        return createProductService.execute(null
-        );
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody Product product) {
+        return createProductService.execute(product);
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getProducts() {
+    public ResponseEntity<List<ProductDTO>> getProducts() {
         return getProductsService.execute(null);
     }
 

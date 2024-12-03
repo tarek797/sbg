@@ -2,6 +2,7 @@ package com.example.sbj.product;
 
 import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
+import com.example.sbj.product.model.UpdateProductCommand;
 import com.example.sbj.product.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,8 +48,8 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateProduct() {
-        return updateProductService.execute(null);
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+        return updateProductService.execute(new UpdateProductCommand(id, product));
     }
 
     @DeleteMapping

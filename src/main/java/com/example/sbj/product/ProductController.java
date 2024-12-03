@@ -2,10 +2,7 @@ package com.example.sbj.product;
 
 import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
-import com.example.sbj.product.services.CreateProductService;
-import com.example.sbj.product.services.DeleteProductService;
-import com.example.sbj.product.services.GetProductsService;
-import com.example.sbj.product.services.UpdateProductService;
+import com.example.sbj.product.services.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,16 +15,19 @@ public class ProductController {
     final CreateProductService createProductService;
     final UpdateProductService updateProductService;
     final DeleteProductService deleteProductService;
+    final GetProductService getProductService;
 
     public ProductController(GetProductsService getProductsService,
                              CreateProductService createProductService,
                              UpdateProductService updateProductService,
-                             DeleteProductService deleteProductService) {
+                             DeleteProductService deleteProductService,
+                             GetProductService getProductService) {
 
         this.getProductsService = getProductsService;
         this.createProductService = createProductService;
         this.updateProductService = updateProductService;
         this.deleteProductService = deleteProductService;
+        this.getProductService = getProductService;
     }
 
 
@@ -39,6 +39,11 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getProducts() {
         return getProductsService.execute(null);
+    }
+
+    @GetMapping
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable Integer id) {
+        return getProductService.execute(id);
     }
 
     @PutMapping

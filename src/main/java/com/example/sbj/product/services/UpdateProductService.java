@@ -6,6 +6,7 @@ import com.example.sbj.product.ProductRepository;
 import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
 import com.example.sbj.product.model.UpdateProductCommand;
+import com.example.sbj.validators.ProductValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class UpdateProductService implements Command<UpdateProductCommand, Produ
 
         if (productOptional.isPresent()) {
             Product product = updateProductCommand.getProduct();
+            ProductValidator.execute(product);
             product.setId(productOptional.get().getId());
             productRepository.save(product);
             return ResponseEntity.ok(new ProductDTO(product));

@@ -1,11 +1,11 @@
 package com.example.sbj.product.services;
 
 import com.example.sbj.Command;
+import com.example.sbj.exceptions.ProductNotFoundException;
 import com.example.sbj.product.ProductRepository;
 import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
 import com.example.sbj.product.model.UpdateProductCommand;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +31,6 @@ public class UpdateProductService implements Command<UpdateProductCommand, Produ
             return ResponseEntity.ok(new ProductDTO(product));
         }
 
-        return null;
+        throw new ProductNotFoundException();
     }
 }

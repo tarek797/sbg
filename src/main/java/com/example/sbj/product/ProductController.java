@@ -1,9 +1,12 @@
 package com.example.sbj.product;
 
+import com.example.sbj.exceptions.ProductNotFoundException;
+import com.example.sbj.product.model.ErrorResponse;
 import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
 import com.example.sbj.product.model.UpdateProductCommand;
 import com.example.sbj.product.services.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

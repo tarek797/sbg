@@ -7,6 +7,8 @@ import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
 import com.example.sbj.product.model.UpdateProductCommand;
 import com.example.sbj.validators.ProductValidator;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ public class UpdateProductService implements Command<UpdateProductCommand, Produ
     }
 
     @Override
+    @CachePut(value = "productCache", key ="#updateProductCommand.getId()")
     public ResponseEntity<ProductDTO> execute(UpdateProductCommand updateProductCommand) {
         Optional<Product> productOptional = productRepository.findById(updateProductCommand.getId());
 

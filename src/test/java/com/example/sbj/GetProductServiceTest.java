@@ -43,7 +43,6 @@ public class GetProductServiceTest {
         when(productRepository.findById(1)).thenReturn(Optional.of(product));
 
         ResponseEntity<ProductDTO> response = getProductService.execute(1);
-
         assertEquals(ResponseEntity.ok(new ProductDTO(product)), response);
         verify(productRepository, times(1)).findById(1);
     }

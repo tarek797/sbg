@@ -1,6 +1,7 @@
 package com.example.sbj.product.services;
 
 import com.example.sbj.Query;
+import com.example.sbj.exceptions.ProductNotFoundException;
 import com.example.sbj.product.ProductRepository;
 import com.example.sbj.product.model.Product;
 import com.example.sbj.product.model.ProductDTO;
@@ -31,6 +32,6 @@ public class GetProductService implements Query<Integer, ProductDTO> {
         if (productOptional.isPresent()) {
             return ResponseEntity.ok(new ProductDTO(productOptional.get()));
         }
-        return null;
+        throw new ProductNotFoundException();
     }
 }

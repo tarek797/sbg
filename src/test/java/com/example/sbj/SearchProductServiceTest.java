@@ -14,7 +14,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class SearchProductServiceTest {
     @Mock
@@ -38,7 +39,13 @@ public class SearchProductServiceTest {
         product.setPrice(9.99);
         Products.add(product);
 
+        List<ProductDTO> ProductDTOList = new ArrayList<ProductDTO>();
+        ProductDTOList.add(new ProductDTO(product));
+
         when(productRepository.findByNameOrDescriptionContaining("Product Name")).thenReturn(Products);
+
         ResponseEntity<List<ProductDTO>> response = searchProductService.execute("Product Name");
+        assertEquals(ResponseEntity.ok(ProductDTOList), response);
+        verify(productRepository, times(1)).findByNameOrDescriptionContaining("Product Name");
     }
 }

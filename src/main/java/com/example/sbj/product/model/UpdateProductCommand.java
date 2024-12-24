@@ -1,8 +1,7 @@
 package com.example.sbj.product.model;
 
-import lombok.Getter;
 
-@Getter
+
 public class UpdateProductCommand {
     private Integer id;
     private Product product;
@@ -10,5 +9,13 @@ public class UpdateProductCommand {
     public UpdateProductCommand(Integer id, Product product) {
         this.id = id;
         this.product = product;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 }

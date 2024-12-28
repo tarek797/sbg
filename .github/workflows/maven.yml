@@ -13,7 +13,7 @@ jobs:
     env:
       RDS_PASSWORD: MYDBpassword
       RDS_USERNAME: admin
-      
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17

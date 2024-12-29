@@ -10,8 +10,11 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     env:
-      permissions: write-all
       RDS_PASSWORD: MYDBpassword
       RDS_USERNAME: admin
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

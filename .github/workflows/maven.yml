@@ -15,8 +15,8 @@ jobs:
       pull-requests: write
       repository-projects: write
     env:
-      RDS_PASSWORD: MYDBpassword
-      RDS_USERNAME: admin
+      RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
+      RDS_USERNAME: ${{ secrets.RDS_USERNAME }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v4
